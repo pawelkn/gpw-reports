@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from gpw_reports import EspiEbiReports
 
-config_file = os.environ['GPW_REPORTS_CONFIG_FILE'] if 'GPW_REPORTS_CONFIG_FILE' in os.environ else os.path.expanduser('config.json')
+config_file = os.environ['GPW_REPORTS_CONFIG_FILE'] if 'GPW_REPORTS_CONFIG_FILE' in os.environ else os.path.expanduser('~/.gpw_reports/config.json')
 keywords_file = os.environ['GPW_REPORTS_KEYWORDS_FILE'] if 'GPW_REPORTS_KEYWORDS_FILE' in os.environ else os.path.expanduser('~/.gpw_reports/keywords.json')
 state_file = os.environ['GPW_REPORTS_STATE_FILE'] if 'GPW_REPORTS_STATE_FILE' in os.environ else os.path.expanduser('~/.gpw_reports/state.json')
 
