@@ -1,0 +1,11 @@
+build
+idea
+__pycache__
+*.pyc
+*.swp
+*.vim
+*.log
+state.json
+config.json
+keywords.json
+deploy.sh
