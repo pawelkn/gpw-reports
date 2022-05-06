@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  gpw-reports:
+    build: .
+    volumes:
+      - ./data:/app/data
