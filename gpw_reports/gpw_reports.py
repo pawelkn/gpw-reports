@@ -42,24 +42,20 @@ def sendMail(reports, recipient):
         server.sendmail(smtp_config['sender'], recipient['email'], message.as_string())
 
 def main():
-    try:
-        while True:
-            mailing_list = readJsonFromFile(mailing_list_file, [])
-            state = readJsonFromFile(state_file)
-            reports = EspiEbiReports()
+    while True:
+        mailing_list = readJsonFromFile(mailing_list_file, [])
+        state = readJsonFromFile(state_file)
+        reports = EspiEbiReports()
 
-            if 'last_id' not in state or state['last_id'] != reports[0].id:
-                state['last_id'] = reports[0].id
-                writeJsonToFile(state_file, state)            
+        if 'last_id' not in state or state['last_id'] != reports[0].id:
+            state['last_id'] = reports[0].id
+            writeJsonToFile(state_file, state)
 
-            for recipient in mailing_list:
-                recipient_reports = reports.filter(keywords=recipient['keywords'], last_id=state['last_id'])
+        for recipient in mailing_list:
+            recipient_reports = reports.filter(keywords=recipient['keywords'], last_id=state['last_id'])
 
-                if len(recipient_reports) > 0:
-                    print('Reports send:', len(recipient_reports))
-                    sendMail(recipient_reports, recipient)
+            if len(recipient_reports) > 0:
+                print('Reports send:', len(recipient_reports))
+                sendMail(recipient_reports, recipient)
 
-            sleep(randrange(60) + 30)
-
-    except KeyboardInterrupt:
-        exit(0)
+        sleep(randrange(60) + 30)
