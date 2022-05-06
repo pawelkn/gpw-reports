@@ -1,7 +1,5 @@
 FROM python:3.8.13-alpine
 
-RUN apk add --no-cache tini
-
 WORKDIR /app
 
 COPY requirements.txt ./
@@ -13,6 +11,6 @@ RUN python -m compileall gpw_reports
 COPY tests/*.py ./tests/
 RUN python -m compileall tests
 
-VOLUME /root/.gpw_reports
+VOLUME /app/data
 
-CMD ["/sbin/tini", "python", "-u", "-m", "gpw_reports"]
+CMD ["python", "-u", "-m", "gpw_reports"]
