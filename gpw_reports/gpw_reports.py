@@ -17,8 +17,7 @@ from gpw_reports import EspiEbiReports
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger_handler = StreamHandler(sys.stdout)
-logger_handler.setLevel(logging.INFO)
-logger_handler.setFormatter(Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger_handler.setFormatter(Formatter('[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S'))
 logger.addHandler(logger_handler)
 
 smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'data/smtp-config.json'
