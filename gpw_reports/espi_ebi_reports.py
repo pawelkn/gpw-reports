@@ -120,7 +120,7 @@ class EspiEbiReports(list):
                     number = parts[3].strip()
                 elif len(parts) == 3:
                     date = parts[0].strip()
-                    type = None
+                    type = str()
                     category = parts[1].strip()
                     number = parts[2].strip()
                 else:
