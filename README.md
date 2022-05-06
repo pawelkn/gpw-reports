@@ -30,7 +30,7 @@ Example (**data/mailing-list.json**):
 [
     {
         "name": "Recipient Name 1",
-        "email": "recipient_1@gmail.com",
+        "mail": "recipient_1@gmail.com",
         "keywords": [
             "KGHM",
             "CD Projekt",
@@ -39,7 +39,7 @@ Example (**data/mailing-list.json**):
     },
     {
         "name": "Recipient Name 2",
-        "email": "recipient_2@gmail.com",
+        "mail": "recipient_2@gmail.com",
         "keywords": []
     }
 ]
