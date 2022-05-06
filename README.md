@@ -57,7 +57,7 @@ export GPW_REPORTS_STATE_FILE=data/state.json
 
 ## Run
 
-> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
+> ***Note:*** Before run create valid [configuration](#Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
 
 Install dependencies
 
@@ -73,7 +73,7 @@ python3 -m gpw_reports
 
 ## Docker
 
-> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
+> ***Note:*** Before run create valid [configuration](#Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
 
 To avoid python version conflict and/or dependencies installation run application in docker container
 
