@@ -17,5 +17,5 @@ jobs:
     - name: Build the Docker image
       run: docker build -t gpw-reports .
       
-    - name: Test rainflow
+    - name: Test gpw-reports
       run: docker run --rm gpw-reports python -m unittest discover tests
