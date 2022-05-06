@@ -6,8 +6,6 @@ GPW Reports is a keyword scanner of GPW (Warsaw Stock Exchange) ESPI/EBI Company
 
 ## Configuration
 
----
-
 Mail host configuration. To deliver a notification mails an external SMTP service is used. 
 
 To configure SMTP, you will have to create a configuration file *data/smtp-config.json* and enter your sender account settings.
@@ -59,7 +57,7 @@ export GPW_REPORTS_STATE_FILE=data/state.json
 
 ## Run
 
----
+> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
 
 Install dependencies
 
@@ -73,11 +71,9 @@ Application start
 python3 -m gpw_reports
 ```
 
-> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
-
 ## Docker
 
----
+> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
 
 To avoid python version conflict and/or dependencies installation run application in docker container
 
@@ -85,13 +81,7 @@ To avoid python version conflict and/or dependencies installation run applicatio
 docker-compose up --build
 ```
 
-> ***Note:*** Before run create valid [configuration](##Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
-
 ## Unit tests
-
----
-
-Run application tests
 
 ```sh
 python3 -m unittest discover tests
