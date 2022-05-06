@@ -4,7 +4,7 @@
 
 GPW Reports is a keyword scanner of GPW (Warsaw Stock Exchange) ESPI/EBI Company reports. Periodically scraps the <https://www.gpw.pl/espi-ebi-reports> site,  searching for keywords in reports. When matching report is found, sends a notification email.
 
-<p align="center"><img src="screenshot.png" width="200"/></p>
+<p align="center"><img src="screenshot.png" width="300"/></p>
 
 ## Configuration
 
