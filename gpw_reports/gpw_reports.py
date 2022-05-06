@@ -1,5 +1,9 @@
-import os, json
-from sys import exit
+import os
+import sys
+import json
+import  logging
+
+from logging import StreamHandler, Formatter
 from time import sleep
 from random import randrange
 from ssl import create_default_context
@@ -9,6 +13,13 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 from json.decoder import JSONDecodeError
 from gpw_reports import EspiEbiReports
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logger_handler = StreamHandler(sys.stdout)
+logger_handler.setLevel(logging.INFO)
+logger_handler.setFormatter(Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger.addHandler(logger_handler)
 
 smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'data/smtp-config.json'
 mailing_list_file = os.environ['GPW_REPORTS_MAILING_LIST_FILE'] if 'GPW_REPORTS_MAILING_LIST_FILE' in os.environ else 'data/mailing-list.json'
@@ -67,11 +78,11 @@ def scrapReportsAndNotifyRecipients():
 
             if len(filtered_reports) > 0:                
                 sendMail(recipient, filtered_reports)
-                print('reports send:', len(filtered_reports))
+                logger.info({'reports_send': len(filtered_reports)})
 
     state['last_id'] = reports[0].id          
     writeJsonToFile(state_file, state)
-    print('state:', state)
+    logger.info({'state': state})
 
 def main():
     while True:
