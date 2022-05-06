@@ -430,7 +430,7 @@ download_output = """
         <a href="espi-ebi-report?geru_id=395919&amp;title=Protok%C3%B3%C5%82+Nadzwyczajnego+Walnego+Zgromadzenia+Akcjonariuszy+Sp%C3%B3%C5%82ki+Investment+Friends+Capital+SE+z+dnia+04.05.2022+r.+Protocol+of+the+Extraordinary+General+Meeting+of+Shareholders+of+Investment+Friends+Capital+SE+of+4%2F05%2F2022.">more &gt;</a>
 </li>
 <li style="padding: 15px 0;">
-	    <span class="date">04-05-2022 18:15:11 | Current | ESPI | 7/2022</span>
+	    <span class="date">04-05-2022 18:15:11 | ESPI | 7/2022</span>
     <strong class="name">
         <a href="espi-ebi-report?geru_id=395918&amp;title=Wst%C4%99pne+wybrane+skonsolidowane+dane+finansowe+Grupy+Kapita%C5%82owej+CCC+za+I+kwarta%C5%82+2022+roku">
         	        	CCC SPÓŁKA AKCYJNA (PLCCC0000016)
