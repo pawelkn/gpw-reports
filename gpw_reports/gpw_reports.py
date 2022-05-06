@@ -1,9 +1,8 @@
 import os
 import sys
 import json
-import  logging
+import logging
 
-from logging import StreamHandler, Formatter
 from time import sleep
 from random import randrange
 from ssl import create_default_context
@@ -16,9 +15,10 @@ from gpw_reports import EspiEbiReports
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-logger_handler = StreamHandler(sys.stdout)
-logger_handler.setFormatter(Formatter('[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S'))
-logger.addHandler(logger_handler)
+handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'data/smtp-config.json'
 mailing_list_file = os.environ['GPW_REPORTS_MAILING_LIST_FILE'] if 'GPW_REPORTS_MAILING_LIST_FILE' in os.environ else 'data/mailing-list.json'
