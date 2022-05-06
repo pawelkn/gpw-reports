@@ -6,7 +6,7 @@ GPW Reports is a keyword scanner of GPW (Warsaw Stock Exchange) ESPI/EBI Company
 
 ## Configuration
 
-Mail host configuration. To deliver a notification mails an external SMTP service is used. 
+Mail host configuration. To deliver a notification mails an external SMTP service is used.
 
 To configure SMTP, you will have to create a configuration file *data/smtp-config.json* and enter your sender account settings.
 
@@ -83,6 +83,15 @@ docker-compose up --build
 
 ## Unit tests
 
+Run tests locally
+
 ```sh
 python3 -m unittest discover tests
+```
+
+or using docker
+
+```sh
+docker build -t gpw-reports .
+docker run --rm gpw-reports python -m unittest discover tests
 ```
