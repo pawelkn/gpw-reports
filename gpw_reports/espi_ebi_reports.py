@@ -50,7 +50,7 @@ class EspiEbiReports(list):
                    keyword.lower() in report.company.lower() or \
                    keyword.lower() in report.title.lower():
                     filtered.append(report)
-                    continue
+                    break
 
         return EspiEbiReports(filtered)
 

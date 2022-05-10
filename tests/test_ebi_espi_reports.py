@@ -41,6 +41,10 @@ class TestEspiEbiReports(unittest.TestCase):
         self.assertEqual(len(filtered), 1)
         self.assertEqual(filtered[0].id, 395932)
 
+        filtered = reports.filter(['annual', 'energo'])
+        self.assertEqual(len(filtered), 1)
+        self.assertEqual(filtered[0].id, 395932)
+
         filtered = reports.filter(['budimex'])
         self.assertEqual(len(filtered), 2)
         self.assertEqual(filtered[0].id, 395916)
