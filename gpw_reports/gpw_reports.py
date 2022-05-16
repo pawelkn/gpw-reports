@@ -77,7 +77,7 @@ def scrapReportsAndNotifyRecipients():
 
             if len(filtered_reports) > 0:
                 sendMail(recipient, filtered_reports)
-                logger.info({'recipient': recipient['name'], 'reports': filtered_reports})
+                logger.info({'recipient': recipient['name'], 'reports': len(filtered_reports)})
 
     state['last_id'] = reports[0].id
     writeJsonToFile(state_file, state)
