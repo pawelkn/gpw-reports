@@ -11,14 +11,16 @@ class TestEspiEbiReports(unittest.TestCase):
         reports = EspiEbiReports()
 
         self.assertEqual(len(reports), 30)
-        self.assertEqual(reports[0].id, 395960)
-        self.assertEqual(reports[0].date, '05-05-2022 12:43:03')
-        self.assertEqual(reports[0].type, 'Current')
-        self.assertEqual(reports[0].category, 'ESPI')
-        self.assertEqual(reports[0].number, '14/2022')
-        self.assertEqual(reports[0].company, 'ZAKŁAD BUDOWY MASZYN ZREMB-CHOJNICE SPÓŁKA AKCYJNA (PLZBMZC00019)')
-        self.assertEqual(reports[0].title, 'Podpisanie porozumienia w sprawie wspólnej realizacji projektu.')
-        self.assertEqual(reports[0].url, 'https://www.gpw.pl/espi-ebi-report?geru_id=395960&title=Podpisanie+porozumienia+w+sprawie+wsp%C3%B3lnej+realizacji+projektu.')
+        for report in reports:
+            self.assertEqual(report.id, 395960)
+            self.assertEqual(report.date, '05-05-2022 12:43:03')
+            self.assertEqual(report.type, 'Current')
+            self.assertEqual(report.category, 'ESPI')
+            self.assertEqual(report.number, '14/2022')
+            self.assertEqual(report.company, 'ZAKŁAD BUDOWY MASZYN ZREMB-CHOJNICE SPÓŁKA AKCYJNA (PLZBMZC00019)')
+            self.assertEqual(report.title, 'Podpisanie porozumienia w sprawie wspólnej realizacji projektu.')
+            self.assertEqual(report.url, 'https://www.gpw.pl/espi-ebi-report?geru_id=395960&title=Podpisanie+porozumienia+w+sprawie+wsp%C3%B3lnej+realizacji+projektu.')
+            break
 
     def test_filter(self):
         reports = EspiEbiReports()
@@ -247,7 +249,7 @@ download_output = """
         <span class="profit margin-left-30 pull-right"><small>Change</small> 0,75% <i class="icon-up"></i></span>
     <span class="summary margin-left-30 pull-right"><small>FX rate</small>13,49</span>
         <p>
-                				
+
             </p>
         <a href="espi-ebi-report?geru_id=395934">more &gt;</a>
 </li>
@@ -275,7 +277,7 @@ download_output = """
         <span class="profit margin-left-30 pull-right"><small>Change</small> 0,00% <i class="icon-"></i></span>
     <span class="summary margin-left-30 pull-right"><small>FX rate</small>0,86</span>
         <p>
-                				
+
             </p>
         <a href="espi-ebi-report?geru_id=395932">more &gt;</a>
 </li>
@@ -317,7 +319,7 @@ download_output = """
         <span class="profit margin-left-30 pull-right"><small>Change</small> 0,00% <i class="icon-"></i></span>
     <span class="summary margin-left-30 pull-right"><small>FX rate</small>7,74</span>
         <p>
-                				
+
             </p>
         <a href="espi-ebi-report?geru_id=395929">more &gt;</a>
 </li>
@@ -331,7 +333,7 @@ download_output = """
         <span class="profit margin-left-30 pull-right"><small>Change</small> 0,00% <i class="icon-"></i></span>
     <span class="summary margin-left-30 pull-right"><small>FX rate</small>7,74</span>
         <p>
-                				
+
             </p>
         <a href="espi-ebi-report?geru_id=395928">more &gt;</a>
 </li>

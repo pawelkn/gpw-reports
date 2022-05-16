@@ -14,11 +14,11 @@ class EspiEbiReport:
     number: str
     company: str
     title: str
-    url: str    
+    url: str
 
 
 class EspiEbiReports(list):
-    HOST = 'https://www.gpw.pl'    
+    HOST = 'https://www.gpw.pl'
 
     def __init__(self, reports: List[EspiEbiReport] = None):
         if reports is not None:
@@ -28,6 +28,9 @@ class EspiEbiReports(list):
 
     def __len__(self):
         return len(self.__reports)
+
+    def __iter__(self):
+        return iter(self.__reports)
 
     def __getitem__(self, index):
         return self.__reports.__getitem__(index)
@@ -62,7 +65,7 @@ class EspiEbiReports(list):
                 .format(report.id, report.date, report.type, report.category, report.number, report.url, report.company, report.title)
 
         html = html + '</tbody></table></html>'
-        
+
         html = html.replace('<table>', '<table style="border-collapse:collapse; width: 100%";>')
         html = html.replace('<th>', '<th style="font-size: 12px; font-family: system-ui; text-align: center; border: none; padding: 5px; font-weight: bold; color: #777; background-color: #f7f7f9; ">')
         html = html.replace('<tr>', '<tr style="border-top: solid 1px #ccc;">')
@@ -133,4 +136,5 @@ class EspiEbiReports(list):
                 report = EspiEbiReport(id, date, type, category, number, company, title, url)
                 reports.append(report)
 
+        reports.sort(key=lambda report: report.id, reverse=True)
         return reports
