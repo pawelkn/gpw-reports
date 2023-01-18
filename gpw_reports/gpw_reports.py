@@ -68,17 +68,22 @@ def scrapReportsAndNotifyRecipients():
     if len(reports) == 0:
         return
 
-    last_report = max(reports, key=lambda report: report.id)
     state = readJsonFromFile(state_file)
-    if 'last_id' in state and state['last_id'] != last_report.id:
+    if 'last_id' not in state or type(state['last_id']) != int:
+        state['last_id'] = 0
 
-        mailing_list = readJsonFromFile(mailing_list_file, [])
-        for recipient in mailing_list:
-            filtered_reports = reports.filter(keywords=recipient['keywords'], last_id=state['last_id'])
+    last_report = max(reports, key=lambda report: report.id)
+    if state['last_id'] >= last_report.id:
+        return
 
-            if len(filtered_reports) > 0:
-                sendMail(recipient, filtered_reports)
-                logger.info({'recipient': recipient['name'], 'reports': len(filtered_reports)})
+    mailing_list = readJsonFromFile(mailing_list_file, [])
+    for recipient in mailing_list:
+        filtered_reports = reports.filter(keywords=recipient['keywords'], last_id=state['last_id'])
+        if len(filtered_reports) == 0:
+            continue
+
+        sendMail(recipient, filtered_reports)
+        logger.info({'recipient': recipient['name'], 'reports': len(filtered_reports)})
 
     state['last_id'] = last_report.id
     writeJsonToFile(state_file, state)
