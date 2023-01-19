@@ -2,6 +2,8 @@ FROM python:3.8.13-alpine
 
 WORKDIR /app
 
+RUN addgroup --gid 1000 -S python  && adduser --uid 1000 -S python -G python
+
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 

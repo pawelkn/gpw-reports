@@ -20,8 +20,8 @@ formatter = logging.Formatter('[%(asctime)s] %(levelname)s [%(filename)s.%(funcN
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'data/smtp-config.json'
-mailing_list_file = os.environ['GPW_REPORTS_MAILING_LIST_FILE'] if 'GPW_REPORTS_MAILING_LIST_FILE' in os.environ else 'data/mailing-list.json'
+smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'smtp-config.json'
+mailing_list_file = os.environ['GPW_REPORTS_MAILING_LIST_FILE'] if 'GPW_REPORTS_MAILING_LIST_FILE' in os.environ else 'mailing-list.json'
 state_file = os.environ['GPW_REPORTS_STATE_FILE'] if 'GPW_REPORTS_STATE_FILE' in os.environ else 'data/state.json'
 
 def readJsonFromFile(filename: str, default={}):

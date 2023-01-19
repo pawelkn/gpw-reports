@@ -3,5 +3,8 @@ version: '2'
 services:
   gpw-reports:
     build: .
+    user: "python:python"
     volumes:
+      - ./smtp-config.json:/app/smtp-config.json
+      - ./mailing-list.json:/app/mailing-list.json
       - ./data:/app/data

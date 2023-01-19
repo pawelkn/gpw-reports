@@ -10,9 +10,9 @@ GPW Reports is a keyword scanner of GPW (Warsaw Stock Exchange) ESPI/EBI Company
 
 Mail host configuration. To deliver a notification mails an external SMTP service is used.
 
-To configure SMTP, you will have to create a configuration file *data/smtp-config.json* and enter your sender account settings.
+To configure SMTP, you will have to create a configuration file *smtp-config.json* and enter your sender account settings.
 
-Example (**data/smtp-config.json**):
+Example (**smtp-config.json**):
 
 ```json
 {
@@ -24,9 +24,9 @@ Example (**data/smtp-config.json**):
 }
 ```
 
-Mailing list. The mailing list is kept in *data/mailing-list.json* file. It contains mail addresses and attached keywords. Keywords are case insensitive. If an empty keywords list is set, all reports are mailed.
+Mailing list. The mailing list is kept in *mailing-list.json* file. It contains mail addresses and attached keywords. Keywords are case insensitive. If an empty keywords list is set, all reports are mailed.
 
-Example (**data/mailing-list.json**):
+Example (**mailing-list.json**):
 
 ```json
 [
@@ -52,14 +52,14 @@ Location of configuration and state files can be configured using environment va
 Example:
 
 ```sh
-export GPW_REPORTS_SMTP_CONFIG_FILE=data/smtp-config.json
-export GPW_REPORTS_MAILING_LIST_FILE=data/mailing-list.json
+export GPW_REPORTS_SMTP_CONFIG_FILE=smtp-config.json
+export GPW_REPORTS_MAILING_LIST_FILE=mailing-list.json
 export GPW_REPORTS_STATE_FILE=data/state.json
 ```
 
 ## Run
 
-> ***Note:*** Before run create valid [configuration](#Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
+> ***Note:*** Before run create valid [configuration](#Configuration) files: *smtp-config.json* and *mailing-list.json*
 
 Install dependencies
 
@@ -75,7 +75,7 @@ python3 -m gpw_reports
 
 ## Docker
 
-> ***Note:*** Before run create valid [configuration](#Configuration) files: *data/smtp-config.json* and *data/mailing-list.json*
+> ***Note:*** Before run create valid [configuration](#Configuration) files: *smtp-config.json* and *mailing-list.json*
 
 To avoid python version conflict and/or dependencies installation run application in docker container
 
