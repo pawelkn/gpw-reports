@@ -13,16 +13,11 @@ from email.header import Header
 from json.decoder import JSONDecodeError
 from gpw_reports import EspiEbiReports
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-handler = logging.StreamHandler(sys.stdout)
-formatter = logging.Formatter('[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s][%(levelname)s] %(message)s')
 
-smtp_config_file = os.environ['GPW_REPORTS_SMTP_CONFIG_FILE'] if 'GPW_REPORTS_SMTP_CONFIG_FILE' in os.environ else 'smtp-config.json'
-mailing_list_file = os.environ['GPW_REPORTS_MAILING_LIST_FILE'] if 'GPW_REPORTS_MAILING_LIST_FILE' in os.environ else 'mailing-list.json'
-state_file = os.environ['GPW_REPORTS_STATE_FILE'] if 'GPW_REPORTS_STATE_FILE' in os.environ else 'data/state.json'
+SMTP_CONFIG_FILE = os.environ.get('GPW_REPORTS_SMTP_CONFIG_FILE', 'smtp-config.json')
+MAILING_LIST_FILE = os.environ.get('GPW_REPORTS_MAILING_LIST_FILE', 'mailing-list.json')
+STATE_FILE = os.environ.get('GPW_REPORTS_STATE_FILE', 'data/state.json')
 
 def readJsonFromFile(filename: str, default={}):
     try:
@@ -33,7 +28,6 @@ def readJsonFromFile(filename: str, default={}):
     except FileNotFoundError:
         return default
 
-
 def writeJsonToFile(filename: str, jsn):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w+') as f:
@@ -41,7 +35,7 @@ def writeJsonToFile(filename: str, jsn):
 
 
 def sendMail(recipient: str, reports: EspiEbiReports):
-    smtp_config = readJsonFromFile(smtp_config_file)
+    smtp_config = readJsonFromFile(SMTP_CONFIG_FILE)
 
     message = MIMEMultipart('alternative')
     message['Subject'] = 'GPW ESPI/EBI Reports'
@@ -68,26 +62,27 @@ def scrapReportsAndNotifyRecipients():
     if len(reports) == 0:
         return
 
-    state = readJsonFromFile(state_file)
+    state = readJsonFromFile(STATE_FILE)
     if 'last_id' not in state or type(state['last_id']) != int:
         state['last_id'] = 0
 
     last_report = max(reports, key=lambda report: report.id)
+    logging.info(f'Current state id: {state["last_id"]}, downloaded reports: {len(reports)}, last report id: {last_report.id}')
+
     if state['last_id'] >= last_report.id:
         return
 
-    mailing_list = readJsonFromFile(mailing_list_file, [])
+    mailing_list = readJsonFromFile(MAILING_LIST_FILE, [])
     for recipient in mailing_list:
         filtered_reports = reports.filter(keywords=recipient['keywords'], last_id=state['last_id'])
         if len(filtered_reports) == 0:
             continue
 
         sendMail(recipient, filtered_reports)
-        logger.info({'recipient': recipient['name'], 'reports': len(filtered_reports)})
+        logging.info(f'Sending {len(filtered_reports)} reports to {recipient["name"]}')
 
     state['last_id'] = last_report.id
-    writeJsonToFile(state_file, state)
-    logger.info({'state': state})
+    writeJsonToFile(STATE_FILE, state)
 
 def main():
     while True:
