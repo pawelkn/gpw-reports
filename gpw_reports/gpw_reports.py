@@ -58,7 +58,12 @@ def sendMail(recipient: str, reports: EspiEbiReports):
 
 
 def scrapReportsAndNotifyRecipients():
-    reports = EspiEbiReports()
+    try:
+        reports = EspiEbiReports()
+    except Exception as err:
+        logging.error(f'Unexpected {err=}, {type(err)=}')
+        return
+
     if len(reports) == 0:
         return
 
