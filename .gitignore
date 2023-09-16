@@ -6,4 +6,3 @@ __pycache__
 *.vim
 *.log
 *.json
-deploy.sh
